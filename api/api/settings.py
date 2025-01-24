@@ -31,6 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'user.apps.UserConfig',
+    'city.apps.CityConfig',
+    'delevery_document.apps.DeleveryDocumentConfig',
+    'invoice_document.apps.InvoiceDocumentConfig',
+    'parcel.apps.ParcelConfig',
+    'personalised_price.apps.PersonalisedPriceConfig',
+    'pickUp.apps.PickupConfig',
+    'reclamation.apps.ReclamationConfig',
+    'zone.apps.ZoneConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
+AUTH_USER_MODEL = 'user.User'
 
 TEMPLATES = [
     {

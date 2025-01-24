@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LivraisionConfig(AppConfig):
+class DeleveryDocumentConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'livraision'
+    name = 'delevery_document'
