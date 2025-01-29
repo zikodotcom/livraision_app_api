@@ -26,6 +26,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('zone/', include('zone.urls')),
     path('city/', include('city.urls')),
+    path('reclamation/', include('reclamation.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 

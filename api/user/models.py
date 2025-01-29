@@ -24,5 +24,4 @@ class User(AbstractUser):
     bank_account = models.CharField(max_length=255, blank=True, null=True)
     bank_rib = models.CharField(max_length=255, blank=True, null=True)
     dilevery_price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    is_approved = models.BooleanField(default=False)
 
