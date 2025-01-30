@@ -93,7 +93,7 @@ def client_login(request):
     username = request.data['username']
     password = request.data['password']
     try:
-        user = User.objects.get(username=username)
+        user = User.objects.get(username=username, type='client')
     except User.DoesNotExist:
         return Response({"error" : "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
     # TODO Check password

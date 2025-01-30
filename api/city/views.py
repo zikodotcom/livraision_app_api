@@ -25,7 +25,7 @@ def get_citys(request):
     # # return Response(serializer.data, status=status.HTTP_200_OK)
     paginator = CityPagination()
     querySet = City.objects.prefetch_related('zone', 'user').all()
-    paginate_data_queryset = paginator.paginate_queryset(querySet, request)
+    paginate_data_queryset = paginator.paginate_queryset(querySet, request, view=False)
     serializer = CitySerializer(paginate_data_queryset, many=True)
     return paginator.get_paginated_response(serializer.data)
 
