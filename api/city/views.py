@@ -11,23 +11,18 @@ from .Pagination import CityPagination
 # TODO Get list of all city or filter by one city
 @api_view(['GET'])
 def get_citys(request):
-    # params = request.query_params
-    # querySet = ''
-    # if 'zone' in params:
-    #     querySet = City.objects.filter(zone=params['zone'])
-    #     serializer = CitySerializer(querySet, many=True)
-    # else:
-    #     querySet = City.objects.prefetch_related('zone', 'user').all()
-    #     paginate = CityPagination()
-    #     paginate_data = paginate.paginate_queryset(querySet, request)
-    #     print(paginate_data)
-    #     return Response(paginate_data)
-    # # return Response(serializer.data, status=status.HTTP_200_OK)
-    paginator = CityPagination()
-    querySet = City.objects.prefetch_related('zone', 'user').all()
-    paginate_data_queryset = paginator.paginate_queryset(querySet, request, view=False)
-    serializer = CitySerializer(paginate_data_queryset, many=True)
-    return paginator.get_paginated_response(serializer.data)
+    params = request.query_params
+    querySet = ''
+    if 'zone' in params:
+        querySet = City.objects.filter(zone=params['zone'])
+        serializer = CitySerializer(querySet, many=True)
+    else:
+        paginator = CityPagination()
+        querySet = City.objects.prefetch_related('zone').all()
+        paginate_data_queryset = paginator.paginate_queryset(querySet, request, view=False)
+        serializer = CitySerializer(paginate_data_queryset, many=True)
+        return paginator.get_paginated_response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 # TODO Create city
 

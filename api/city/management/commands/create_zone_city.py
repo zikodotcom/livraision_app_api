@@ -3,6 +3,7 @@ from zone.models import Zone
 from city.models import City
 from user.models import User
 import random
+from django.contrib.auth.hashers import make_password
 class Command(BaseCommand):
     help = 'Add city and zone to database'
 
@@ -58,9 +59,29 @@ class Command(BaseCommand):
             }
         ]
 
+        # TODO Create user admin
+        user_data = {"username": "admin", "password": make_password("admin"), "type" : "admin", "is_active" : True, 'first_name': "Mustapha", 'last_name' : "Mustapha"}
+        user = User.objects.create(**user_data)
+        # TODO Create user client
+        client_user = {
+                    "username": "client",
+                    "password": make_password("client123"),
+                    "email_verefied_at": "2024-01-31",
+                    "phone": "0612345678",
+                    "type": "client",
+                    "cin": "AB12345678",
+                    "city": "a483a5b6294848d1946f71c644c05ad3",
+                    "adresse": "123 Rue Example, Casablanca, Morocco",
+                    "company_name": "Example Company",
+                    "company_type": "SARL",
+                    "bank_name": "Attijariwafa Bank",
+                    "bank_account": "123456789012345678901234",
+                    "bank_rib": "RIBEXAMPLE1234567890"
+                }
+        User.objects.create(**client_user)
+
         for item in morocco_zones:
             zone = Zone.objects.create(zone_name=item['zone'])
-            user = User.objects.all().first()
             for city in item["cities"]:
                 City.objects.create(city_name=city, zone=zone, user=user, price=random.randrange(10, 90))
 
